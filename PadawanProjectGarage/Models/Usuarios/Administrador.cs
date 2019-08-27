@@ -9,14 +9,10 @@ namespace PadawanProjectGarage.Models
     public class Administrador : UserControls   //Usuario GESTOR DAS VAGAS
     {
         [Key]
-        public int Id { get; set; }
-
+        public int AdministradorId { get; set; }
         public string Nome { get; set; }
-
         public string Email { get; set; }
-
-        public string Login { get; set; }
-
-        public string Senha { get; set; }
+        //public string Login { get; set; }
+        //public string Senha { get; set; }
     }
 }

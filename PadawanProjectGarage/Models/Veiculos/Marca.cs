@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace PadawanProjectGarage.Models
 {
-    public class Marca      //OPCIONAL
+    public class Marca : UserControls     //OPCIONAL
     {
-        public int Id { get; set; }
-        public int Codigo { get; set; }
+        [Key]
+        public int MarcaID { get; set; }
+        public int CodigoMarca { get; set; }
         public string Descricao { get; set; }
 
-        [ForeignKey("TipoVeiculoFK")]
-        public TipoVeiculo TipoVeiculo { get; set; }
-        public int TipoVeiculoFK { get; set; }
+        public virtual TipoVeiculo CodigoTipo { get; set; }
 
     }
 }

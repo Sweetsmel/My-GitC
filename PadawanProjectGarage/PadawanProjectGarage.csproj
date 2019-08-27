@@ -52,14 +52,26 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.Edm.5.8.3\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.OData.5.8.3\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Spatial, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Spatial.5.8.3\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -162,10 +174,28 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarcasController.cs" />
+    <Compile Include="Controllers\ModeloesController.cs" />
+    <Compile Include="Controllers\TipoVeiculoesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Enum\ValidFields.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908271734360_CreateAndInsert.cs" />
+    <Compile Include="Migrations\201908271734360_CreateAndInsert.Designer.cs">
+      <DependentUpon>201908271734360_CreateAndInsert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908271758146_Insert.cs" />
+    <Compile Include="Migrations\201908271758146_Insert.Designer.cs">
+      <DependentUpon>201908271758146_Insert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908271847438_Actualization.cs" />
+    <Compile Include="Migrations\201908271847438_Actualization.Designer.cs">
+      <DependentUpon>201908271847438_Actualization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Sistema\CustomValidFields.cs" />
     <Compile Include="Models\Sistema\GaragemContext.cs" />
     <Compile Include="Models\Veiculos\Marca.cs" />
     <Compile Include="Models\Veiculos\Modelo.cs" />
@@ -174,7 +204,7 @@
     <Compile Include="Models\Usuarios\TermoDeLocacao.cs" />
     <Compile Include="Models\Veiculos\CordoVeiculo.cs" />
     <Compile Include="Models\Usuarios\PeriodoLocacao.cs" />
-    <Compile Include="Models\Usuarios\UserControls.cs" />
+    <Compile Include="Models\Sistema\UserControls.cs" />
     <Compile Include="Models\Usuarios\Colaborador.cs" />
     <Compile Include="Models\Veiculos\TipoVeiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,6 +291,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908271734360_CreateAndInsert.resx">
+      <DependentUpon>201908271734360_CreateAndInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908271758146_Insert.resx">
+      <DependentUpon>201908271758146_Insert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908271847438_Actualization.resx">
+      <DependentUpon>201908271847438_Actualization.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

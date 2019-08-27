@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace PadawanProjectGarage.Models.Usuarios
 {
-    public class TermoDeLocacao
+    public class TermoDeLocacao : UserControls
     {
-        public int Id { get; set; }
-        public string Descricao { get; set; }
+        [Key]
+        public int TermoID { get; set; }
+        public string Descricao { get; set; }  //texto formatado
     }
 }

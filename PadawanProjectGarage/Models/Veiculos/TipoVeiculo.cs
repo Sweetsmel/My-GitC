@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace PadawanProjectGarage.Models
 {
-    public class TipoVeiculo                     //automovel, moto, bike ou patinete    OPCIONAL
+    public class TipoVeiculo : UserControls             //OPCIONAL (User controls pois tem Ativo)
     {
-        public int Id { get; set; }
-        public int Codigo { get; set; }
-        public string Tipo { get; set; }
-
+        [Key]
+        public int TipoVeiculoID { get; set; }          //O Id dos veículos por tipo cadastrado
+        public int CodigoTipo { get; set; }
+        public string Descricao { get; set; }           //Automovel, Moto, Bike, Patinete
     }
 }

@@ -10,7 +10,9 @@ namespace PadawanProjectGarage.Models
     {
         [Key]
         public int CorId { get; set; }
+
         public int CodigoCor { get; set; }
+
         public string Descricao { get; set; }
     }
 }

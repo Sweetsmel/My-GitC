@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PadawanProjectGarage.Models.Sistema;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,12 +12,21 @@ namespace PadawanProjectGarage.Models
     {
         [Key]
         public int PeriodoID { get; set; }
-        public int CodigoPeriodo { get; set; }
-        public decimal Valor { get; set; }              //valor R$ das vagas
+
+        public int CodigoPeriodo { get; set; }      //Abril a Dezembro
+
+        public decimal Valor { get; set; }              //valor R$ das vagas, diferente para carro e moto
+
         public int QuantidadeVagas { get; set; }
+
+        [CustomValidFields(Enums.ValidFields.ValidaDatas)]
         public DateTime DataInicio { get; set; }
+
+        [CustomValidFields(Enums.ValidFields.ValidaDatas)]
         public DateTime DataFim { get; set; }
 
-        public virtual TipoVeiculo TipoVeiculo { get; set; }
+        [ForeignKey("Veiculofk")]
+        public TipoVeiculo tipoVeiculoFK { get; set; }
+        public int? Veiculofk { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace PadawanProjectGarage.Models.Usuarios
     {
         [Key]
         public int TermoID { get; set; }
+
         public string Descricao { get; set; }  //texto formatado
     }
 }

@@ -15,7 +15,7 @@ namespace PadawanProjectGarage.Models.Sistema
         public DbSet<PeriodoLocacao> PeriodoLocacaos { get; set; }
         public DbSet<TermoDeLocacao> TermoDeLocacaos { get; set; }
         
-        public DbSet<CordoVeiculo> CordoVeiculos { get; set; }
+        public DbSet<CordoVeiculo> CordoVeiculoes { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<TipoVeiculo> TipoVeiculos { get; set; }

@@ -173,26 +173,24 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdministradorsController.cs" />
+    <Compile Include="Controllers\ColaboradorsController.cs" />
+    <Compile Include="Controllers\CordoVeiculoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocacaosController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ModeloesController.cs" />
+    <Compile Include="Controllers\PeriodoLocacaosController.cs" />
+    <Compile Include="Controllers\TermoDeLocacaosController.cs" />
     <Compile Include="Controllers\TipoVeiculoesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Enum\ValidFields.cs" />
+    <Compile Include="Enums\ValidFields.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908271734360_CreateAndInsert.cs" />
-    <Compile Include="Migrations\201908271734360_CreateAndInsert.Designer.cs">
-      <DependentUpon>201908271734360_CreateAndInsert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908271758146_Insert.cs" />
-    <Compile Include="Migrations\201908271758146_Insert.Designer.cs">
-      <DependentUpon>201908271758146_Insert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908271847438_Actualization.cs" />
-    <Compile Include="Migrations\201908271847438_Actualization.Designer.cs">
-      <DependentUpon>201908271847438_Actualization.cs</DependentUpon>
+    <Compile Include="Migrations\201908282005172_CreateAndInsert.cs" />
+    <Compile Include="Migrations\201908282005172_CreateAndInsert.Designer.cs">
+      <DependentUpon>201908282005172_CreateAndInsert.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Sistema\CustomValidFields.cs" />
@@ -293,14 +291,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908271734360_CreateAndInsert.resx">
-      <DependentUpon>201908271734360_CreateAndInsert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908271758146_Insert.resx">
-      <DependentUpon>201908271758146_Insert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908271847438_Actualization.resx">
-      <DependentUpon>201908271847438_Actualization.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908282005172_CreateAndInsert.resx">
+      <DependentUpon>201908282005172_CreateAndInsert.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

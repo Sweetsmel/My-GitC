@@ -11,10 +11,13 @@ namespace PadawanProjectGarage.Models
     {
         [Key]
         public int MarcaID { get; set; }
+
         public int CodigoMarca { get; set; }
+
         public string Descricao { get; set; }
 
-        public virtual TipoVeiculo CodigoTipo { get; set; }
-
+        [ForeignKey("VeiculoFK")]
+        public  TipoVeiculo tipoFK { get; set; }
+        public int? VeiculoFK { get; set; }                  //? PARA ACEITAR NULO
     }
 }

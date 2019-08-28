@@ -83,9 +83,6 @@ C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\EntityFramework.dll
 C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\EntityFramework.SqlServer.dll
 C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\EntityFramework.xml
 C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\EntityFramework.SqlServer.xml
-C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.CreateAndInsert.resources
-C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csproj.GenerateResource.cache
-C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.Insert.resources
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\Microsoft.Data.Edm.dll
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\Microsoft.Data.OData.dll
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\System.Spatial.dll
@@ -121,5 +118,6 @@ C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\ko\System.Spatial.r
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\ru\System.Spatial.resources.dll
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.Actualization.resources
-C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csprojAssemblyReference.cache
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csprojAssemblyReference.cache
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.CreateAndInsert.resources
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csproj.GenerateResource.cache

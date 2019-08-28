@@ -11,9 +11,13 @@ namespace PadawanProjectGarage.Models
     {
         [Key]
         public int ModeloID { get; set; }
+
         public int CodigoModelo { get; set; }
+
         public string Descricao { get; set; }
 
-        public virtual Marca Marca { get; set; }
+        [ForeignKey("MarcaFK")]
+        public Marca marcaFK { get; set; }
+        public int? MarcaFK { get; set; }
     }
 }

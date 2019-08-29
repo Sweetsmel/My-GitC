@@ -1,4 +1,5 @@
-﻿using PadawanProjectGarage.Enums;
+﻿using Newtonsoft.Json.Converters;
+using PadawanProjectGarage.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Http;
 
 namespace PadawanProjectGarage.Models.Sistema
 {
@@ -25,13 +27,13 @@ namespace PadawanProjectGarage.Models.Sistema
             {
                 switch (typeField)
                 {
-                    case ValidFields.ValidaNome: { return ValidarNome(value, validationContext.DisplayName); }
-                    case ValidFields.ValidaEmail: { return ValidarEmail(value, validationContext.DisplayName); }
-                    case ValidFields.ValidaPlaca: { return ValidarPLaca(value, validationContext.DisplayName); }
-                    //case ValidFields.ValidaTermo: { }
-                    //case ValidFields.ValidaStatus: { return ValidaStatus(value, validationContext.DisplayName); }
-                    case ValidFields.ValidaDatas: { return ValidarData(value, validationContext.DisplayName); }
-                    //case ValidFields.ValidaIdade: { return ValidarIdade(value, validationContext.DisplayName); }
+                    case ValidFields.ValidaNome:      return ValidarNome(value, validationContext.DisplayName);
+                    case ValidFields.ValidaEmail:     return ValidarEmail(value, validationContext.DisplayName);
+                    case ValidFields.ValidaPlaca:     return ValidarPLaca(value, validationContext.DisplayName);
+                    //case ValidFields.ValidaVigente:   return ValidarVigente(value, validationContext.DisplayName);
+                    //case ValidFields.ValidaAprovacao: return ValidarAprovacao(value, validationContext.DisplayName);
+                    //case ValidFields.ValidaEspera:    return ValidarEspera(value, validationContext.DisplayName);
+                    //case ValidFields.ValidaIdade:
                     default:
                         break;
                 }
@@ -73,41 +75,47 @@ namespace PadawanProjectGarage.Models.Sistema
             }
             return new ValidationResult($"O campo {displayField} não está no formato aceitável!"); 
         }
-        private ValidationResult ValidarData(object data, string displayField)
+
+        /*private ValidationResult ValidarData(object data, string displayField)
         {
-            DateTime dt;
+            var dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy HH:mm" };
+                GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(dateTimeConverter);
 
-            bool result = DateTime.TryParse("dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
-                //Regex.IsMatch(data.ToString(), @"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$");
-
-            if (result)
+            if (dateTimeConverter)
                 return ValidationResult.Success;
 
             return new ValidationResult($"O campo {displayField} não está no formato aceitável!");
-        }
-        /*
-        private ValidationResult ValidarIdade(object idade, string displayField) //DateTime DataNascimento)
-        {
-            /*int AnoBase = DateTime.Today.Year - 18;
-            if (DataNascimento.Year < AnoBase)
-                return ValidationResult.Success;
-            if (AnoBase == DataNascimento.Year)
-                if (DataNascimento.Month < DateTime.Now.Month)
-                    return ValidationResult.Success;
-            if (DataNascimento.Month == DateTime.Now.Month)
-                if (DataNascimento.Day <= DateTime.Now.Day)
-                    return ValidationResult.Success;
+
+            
         }*/
-        /*
-        private ValidationResult ValidaStatus(bool status, ValidationContext validationContext)
+
+
+        /*private ValidationResult ValidarIdade(object idade, string displayField) //DateTime DataNascimento)
+        {
+            int Idade = DateTime.Today.Year - Colaborador.DataNascimento.Year;
+            if (Colaborador.DataNascimento.Date > DateTime.Today.AddYears(-Idade))
+            {
+                Idade--;
+            }
+            return (Idade >= 60) ? true : false;
+        }*/
+
+        /*private ValidationResult ValidarVigente(bool status, ValidationContext validationContext)
         {
             Locacao locacao = (Locacao)validationContext.ObjectInstance;
 
-            if (locacao.AceitaTermo) locacao.Status = "Esperando aprovação";
+            if (locacao.termoDeLocacao) locacao.Status = "Esperando aprovação";
 
             if (!locacao.AceitaTermo) locacao.Status = "Negado";
 
             return ValidationResult.Success;
+        }*/
+
+        /*private ValidationResult ValidarVeiculos(bool value, ValidationContext validationContext)
+        {
+            TipoVeiculo tipoVeiculo = (TipoVeiculo)validationContext.ObjectInstance;
+
+            if(tipoVeiculo.CodigoTipo) tipoVeiculo.Descricao = ""
         }*/
     }
 }

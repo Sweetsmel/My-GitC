@@ -11,7 +11,11 @@ namespace PadawanProjectGarage.Models
     {
         [Key]
         public int TipoVeiculoID { get; set; }          //O Id dos veículos por tipo cadastrado
+
         public int CodigoTipo { get; set; }
+
+        [Required]
+        //[StringLength(1000)]
         public string Descricao { get; set; }           //Automovel, Moto, Bike, Patinete
     }
 }

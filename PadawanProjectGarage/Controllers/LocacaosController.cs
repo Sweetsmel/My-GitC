@@ -8,12 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PadawanProjectGarage.Models;
 using PadawanProjectGarage.Models.Sistema;
 
 namespace PadawanProjectGarage.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LocacaosController : ApiController
     {
         private GaragemContext db = new GaragemContext();
@@ -21,14 +23,14 @@ namespace PadawanProjectGarage.Controllers
         // GET: api/Locacaos
         public IQueryable<Locacao> GetLocacaos()
         {
-            return db.Locacaos;
+            return db.Locacaos;     //.Where(x => x.Ativo == true);
         }
 
         // GET: api/Locacaos/5
         [ResponseType(typeof(Locacao))]
-        public async Task<IHttpActionResult> GetLocacao(int id)
+        public IHttpActionResult GetLocacao(int id)
         {
-            Locacao locacao = await db.Locacaos.FindAsync(id);
+            Locacao locacao = db.Locacaos.Find(id);
             if (locacao == null)
             {
                 return NotFound();
@@ -39,7 +41,7 @@ namespace PadawanProjectGarage.Controllers
 
         // PUT: api/Locacaos/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutLocacao(int id, Locacao locacao)
+        public IHttpActionResult PutLocacao(int id, Locacao locacao)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +57,7 @@ namespace PadawanProjectGarage.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,31 +76,32 @@ namespace PadawanProjectGarage.Controllers
 
         // POST: api/Locacaos
         [ResponseType(typeof(Locacao))]
-        public async Task<IHttpActionResult> PostLocacao(Locacao locacao)
+        public IHttpActionResult PostLocacao(Locacao locacao)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                if (ModelState.Keys.First().ToString() != "locacao.Id")
+                    return BadRequest(ModelState);
             }
 
             db.Locacaos.Add(locacao);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = locacao.LocacaoID }, locacao);
         }
 
         // DELETE: api/Locacaos/5
         [ResponseType(typeof(Locacao))]
-        public async Task<IHttpActionResult> DeleteLocacao(int id)
+        public IHttpActionResult DeleteLocacao(int id)
         {
-            Locacao locacao = await db.Locacaos.FindAsync(id);
+            Locacao locacao = db.Locacaos.Find(id);
             if (locacao == null)
             {
                 return NotFound();
             }
 
-            db.Locacaos.Remove(locacao);
-            await db.SaveChangesAsync();
+            db.Locacaos.Find(id).Ativo = false;         //(remove).locacao
+            db.SaveChanges();
 
             return Ok(locacao);
         }

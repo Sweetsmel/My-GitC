@@ -1,4 +1,5 @@
-﻿using PadawanProjectGarage.Models.Sistema;
+﻿using Newtonsoft.Json;
+using PadawanProjectGarage.Models.Sistema;
 using PadawanProjectGarage.Models.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -9,42 +10,43 @@ using System.Web;
 
 namespace PadawanProjectGarage.Models
 {
+    //[Table("Locacao")]
     public class Locacao : UserControls
     {
         [Key]
         public int LocacaoID { get; set; }
 
+        [CustomValidFields(Enums.ValidFields.ValidaPlaca)]
+        public string Placa { get; set; }
+
+        public bool Status { get; set; }
+
         [ForeignKey("Veiculofk")]
-        public TipoVeiculo tipoVeiculoFK { get; set; }
+        public TipoVeiculo tipoVeiculo { get; set; }
         public int? Veiculofk { get; set; }
 
         [ForeignKey("MarcaFK")]
-        public Marca marcaFK { get; set; }
+        public Marca marca { get; set; }
         public int? MarcaFK { get; set; }
 
         [ForeignKey("ModeloFK")]
-        public Modelo modeloFK { get; set; }
+        public Modelo modelo { get; set; }
         public int? ModeloFK { get; set; }
 
         [ForeignKey("CordoVeiculoFK")]
-        public CordoVeiculo cordoVeiculoFK { get; set; }
+        public CordoVeiculo cordoVeiculo { get; set; }
         public int? CordoVeiculoFK { get; set; }
 
-        [CustomValidFields(Enums.ValidFields.ValidaPlaca)]
-        public string Placa {get; set; }                                //OPCIONAL,.Validação quando for Aut ou Moto (antigo ou novo Mecosul), caso ñ, retornar mensagem verificação
-
         [ForeignKey("PeriodoLocacaoFK")]
-        public PeriodoLocacao periodoLocacaoFK { get; set; }
+        public PeriodoLocacao periodoLocacao { get; set; }
         public int? PeriodoLocacaoFK { get; set; }
 
         [ForeignKey("ColaboradorFK")]
-        public Colaborador colaboradorFK { get; set; }
+        public Colaborador colaborador { get; set; }
         public int? ColaboradorFK { get; set; }
-        
-        public bool Status { get; set; }                                //o aguardo
 
-        [ForeignKey("ColaboradorFK")]
-        public TermoDeLocacao termoDeLocacaoFK { get; set; }
+        [ForeignKey("TermoDeLocacaoFK")]
+        public TermoDeLocacao termoDeLocacao { get; set; }
         public int? TermoDeLocacaoFK { get; set; }
     }
 }

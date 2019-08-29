@@ -64,11 +64,17 @@
     <Reference Include="System.Spatial, Version=5.8.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\System.Spatial.5.8.3\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
     </Reference>
@@ -188,12 +194,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908282005172_CreateAndInsert.cs" />
-    <Compile Include="Migrations\201908282005172_CreateAndInsert.Designer.cs">
-      <DependentUpon>201908282005172_CreateAndInsert.cs</DependentUpon>
+    <Compile Include="Migrations\201908291848018_CreateAnInsert.cs" />
+    <Compile Include="Migrations\201908291848018_CreateAnInsert.Designer.cs">
+      <DependentUpon>201908291848018_CreateAnInsert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908292002029_Insert.cs" />
+    <Compile Include="Migrations\201908292002029_Insert.Designer.cs">
+      <DependentUpon>201908292002029_Insert.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Sistema\BuscarMarcasTipo.cs" />
     <Compile Include="Models\Sistema\CustomValidFields.cs" />
+    <Compile Include="Models\Sistema\DateTimeConverter.cs" />
     <Compile Include="Models\Sistema\GaragemContext.cs" />
     <Compile Include="Models\Veiculos\Marca.cs" />
     <Compile Include="Models\Veiculos\Modelo.cs" />
@@ -291,8 +303,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908282005172_CreateAndInsert.resx">
-      <DependentUpon>201908282005172_CreateAndInsert.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908291848018_CreateAnInsert.resx">
+      <DependentUpon>201908291848018_CreateAnInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908292002029_Insert.resx">
+      <DependentUpon>201908292002029_Insert.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

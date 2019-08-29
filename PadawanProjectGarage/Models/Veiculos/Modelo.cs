@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,12 +13,14 @@ namespace PadawanProjectGarage.Models
         [Key]
         public int ModeloID { get; set; }
 
-        public int CodigoModelo { get; set; }
+        public int CodigoModelo { get; set; }       //foi posto codgmarca
 
+        [Required]
+        //[StringLength(1000)]
         public string Descricao { get; set; }
 
         [ForeignKey("MarcaFK")]
-        public Marca marcaFK { get; set; }
+        public Marca marca { get; set; }
         public int? MarcaFK { get; set; }
     }
 }

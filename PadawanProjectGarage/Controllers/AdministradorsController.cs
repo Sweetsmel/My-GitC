@@ -16,7 +16,7 @@ namespace PadawanProjectGarage.Controllers
 {
     public class AdministradorsController : ApiController
     {
-        private GaragemContext db = new GaragemContext();
+        private readonly GaragemContext db = new GaragemContext();
 
         // GET: api/Administradors
         public IQueryable<Administrador> GetAdministradors()
@@ -26,9 +26,9 @@ namespace PadawanProjectGarage.Controllers
 
         // GET: api/Administradors/5
         [ResponseType(typeof(Administrador))]
-        public async Task<IHttpActionResult> GetAdministrador(int id)
+        public IHttpActionResult GetAdministrador(int id)
         {
-            Administrador administrador = await db.Administradors.FindAsync(id);
+            Administrador administrador = db.Administradors.Find(id);
             if (administrador == null)
             {
                 return NotFound();
@@ -39,7 +39,7 @@ namespace PadawanProjectGarage.Controllers
 
         // PUT: api/Administradors/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutAdministrador(int id, Administrador administrador)
+        public IHttpActionResult PutAdministrador(int id, Administrador administrador)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +55,7 @@ namespace PadawanProjectGarage.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,31 +74,32 @@ namespace PadawanProjectGarage.Controllers
 
         // POST: api/Administradors
         [ResponseType(typeof(Administrador))]
-        public async Task<IHttpActionResult> PostAdministrador(Administrador administrador)
+        public IHttpActionResult PostAdministrador(Administrador administrador)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                if (ModelState.Keys.First().ToString() != "administrador.Id")
+                    return BadRequest(ModelState);
             }
 
             db.Administradors.Add(administrador);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = administrador.AdministradorId }, administrador);
         }
 
         // DELETE: api/Administradors/5
         [ResponseType(typeof(Administrador))]
-        public async Task<IHttpActionResult> DeleteAdministrador(int id)
+        public IHttpActionResult DeleteAdministrador(int id)
         {
-            Administrador administrador = await db.Administradors.FindAsync(id);
+            Administrador administrador = db.Administradors.Find(id);
             if (administrador == null)
             {
                 return NotFound();
             }
 
-            db.Administradors.Remove(administrador);
-            await db.SaveChangesAsync();
+            administrador.Ativo = false;
+            db.SaveChanges();
 
             return Ok(administrador);
         }

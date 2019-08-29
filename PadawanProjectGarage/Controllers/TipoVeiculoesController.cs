@@ -8,12 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PadawanProjectGarage.Models;
 using PadawanProjectGarage.Models.Sistema;
 
 namespace PadawanProjectGarage.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TipoVeiculoesController : ApiController
     {
         private GaragemContext db = new GaragemContext();
@@ -26,9 +28,9 @@ namespace PadawanProjectGarage.Controllers
 
         // GET: api/TipoVeiculoes/5
         [ResponseType(typeof(TipoVeiculo))]
-        public async Task<IHttpActionResult> GetTipoVeiculo(int id)
+        public IHttpActionResult GetTipoVeiculo(int id)
         {
-            TipoVeiculo tipoVeiculo = await db.TipoVeiculos.FindAsync(id);
+            TipoVeiculo tipoVeiculo = db.TipoVeiculos.Find(id);
             if (tipoVeiculo == null)
             {
                 return NotFound();
@@ -39,7 +41,7 @@ namespace PadawanProjectGarage.Controllers
 
         // PUT: api/TipoVeiculoes/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutTipoVeiculo(int id, TipoVeiculo tipoVeiculo)
+        public IHttpActionResult PutTipoVeiculo(int id, TipoVeiculo tipoVeiculo)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +57,7 @@ namespace PadawanProjectGarage.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,7 +76,7 @@ namespace PadawanProjectGarage.Controllers
 
         // POST: api/TipoVeiculoes
         [ResponseType(typeof(TipoVeiculo))]
-        public async Task<IHttpActionResult> PostTipoVeiculo(TipoVeiculo tipoVeiculo)
+        public IHttpActionResult PostTipoVeiculo(TipoVeiculo tipoVeiculo)
         {
             if (!ModelState.IsValid)
             {
@@ -82,23 +84,23 @@ namespace PadawanProjectGarage.Controllers
             }
 
             db.TipoVeiculos.Add(tipoVeiculo);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tipoVeiculo.TipoVeiculoID }, tipoVeiculo);
         }
 
         // DELETE: api/TipoVeiculoes/5
         [ResponseType(typeof(TipoVeiculo))]
-        public async Task<IHttpActionResult> DeleteTipoVeiculo(int id)
+        public IHttpActionResult DeleteTipoVeiculo(int id)
         {
-            TipoVeiculo tipoVeiculo = await db.TipoVeiculos.FindAsync(id);
+            TipoVeiculo tipoVeiculo = db.TipoVeiculos.Find(id);
             if (tipoVeiculo == null)
             {
                 return NotFound();
             }
 
             db.TipoVeiculos.Remove(tipoVeiculo);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return Ok(tipoVeiculo);
         }

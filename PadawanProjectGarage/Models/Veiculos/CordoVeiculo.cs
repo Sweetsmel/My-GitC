@@ -13,6 +13,8 @@ namespace PadawanProjectGarage.Models
 
         public int CodigoCor { get; set; }
 
+        [Required]
+        //[StringLength(1000)]
         public string Descricao { get; set; }
     }
 }

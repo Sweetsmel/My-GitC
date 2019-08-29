@@ -8,12 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PadawanProjectGarage.Models.Sistema;
 using PadawanProjectGarage.Models.Usuarios;
 
 namespace PadawanProjectGarage.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TermoDeLocacaosController : ApiController
     {
         private GaragemContext db = new GaragemContext();
@@ -26,9 +28,9 @@ namespace PadawanProjectGarage.Controllers
 
         // GET: api/TermoDeLocacaos/5
         [ResponseType(typeof(TermoDeLocacao))]
-        public async Task<IHttpActionResult> GetTermoDeLocacao(int id)
+        public IHttpActionResult GetTermoDeLocacao(int id)  //ALTERADO
         {
-            TermoDeLocacao termoDeLocacao = await db.TermoDeLocacaos.FindAsync(id);
+            TermoDeLocacao termoDeLocacao = db.TermoDeLocacaos.Find(id);
             if (termoDeLocacao == null)
             {
                 return NotFound();
@@ -39,7 +41,7 @@ namespace PadawanProjectGarage.Controllers
 
         // PUT: api/TermoDeLocacaos/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutTermoDeLocacao(int id, TermoDeLocacao termoDeLocacao)
+        public IHttpActionResult PutTermoDeLocacao(int id, TermoDeLocacao termoDeLocacao)   //ALTERADO. Pega
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +57,7 @@ namespace PadawanProjectGarage.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();          //ALTERADO
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,31 +76,36 @@ namespace PadawanProjectGarage.Controllers
 
         // POST: api/TermoDeLocacaos
         [ResponseType(typeof(TermoDeLocacao))]
-        public async Task<IHttpActionResult> PostTermoDeLocacao(TermoDeLocacao termoDeLocacao)
+        public IHttpActionResult PostTermoDeLocacao(TermoDeLocacao termoDeLocacao)    //ALTERADO. Insere
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                if (ModelState.Keys.First().ToString() != "termoDeLocacao.Id")      //ADICIONADO
+                    return BadRequest(ModelState);
             }
 
+            var termo = db.TermoDeLocacaos.FirstOrDefault(x => x.Vigente == true);
+            if (termo != null)
+                termo.Vigente = false;
+
             db.TermoDeLocacaos.Add(termoDeLocacao);
-            await db.SaveChangesAsync();
+            db.SaveChanges();                      //ALTERADO
 
             return CreatedAtRoute("DefaultApi", new { id = termoDeLocacao.TermoID }, termoDeLocacao);
         }
 
         // DELETE: api/TermoDeLocacaos/5
         [ResponseType(typeof(TermoDeLocacao))]
-        public async Task<IHttpActionResult> DeleteTermoDeLocacao(int id)
+        public IHttpActionResult DeleteTermoDeLocacao(int id)   //ALTERADO
         {
-            TermoDeLocacao termoDeLocacao = await db.TermoDeLocacaos.FindAsync(id);
+            TermoDeLocacao termoDeLocacao = db.TermoDeLocacaos.Find(id); //ALTERADO
             if (termoDeLocacao == null)
             {
                 return NotFound();
             }
 
             db.TermoDeLocacaos.Remove(termoDeLocacao);
-            await db.SaveChangesAsync();
+            db.SaveChanges();      //ALTERADO
 
             return Ok(termoDeLocacao);
         }

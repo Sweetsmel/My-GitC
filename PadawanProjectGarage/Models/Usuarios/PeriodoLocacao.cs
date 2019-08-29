@@ -1,4 +1,5 @@
-﻿using PadawanProjectGarage.Models.Sistema;
+﻿using Newtonsoft.Json;
+using PadawanProjectGarage.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,16 +14,16 @@ namespace PadawanProjectGarage.Models
         [Key]
         public int PeriodoID { get; set; }
 
-        public int CodigoPeriodo { get; set; }      //Abril a Dezembro
+        public int CodigoPeriodo { get; set; }          //Abril a Dezembro
 
         public decimal Valor { get; set; }              //valor R$ das vagas, diferente para carro e moto
 
-        public int QuantidadeVagas { get; set; }
+        public int QuantidadeVagas { get; set; }        //por tipo de veiculo
 
-        [CustomValidFields(Enums.ValidFields.ValidaDatas)]
+        [JsonConverter(typeof(DateTimeConverter))]
         public DateTime DataInicio { get; set; }
 
-        [CustomValidFields(Enums.ValidFields.ValidaDatas)]
+        [JsonConverter(typeof(DateTimeConverter))]
         public DateTime DataFim { get; set; }
 
         [ForeignKey("Veiculofk")]

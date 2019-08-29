@@ -8,27 +8,29 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PadawanProjectGarage.Models;
 using PadawanProjectGarage.Models.Sistema;
 
 namespace PadawanProjectGarage.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ColaboradorsController : ApiController
     {
-        private GaragemContext db = new GaragemContext();
+        private readonly GaragemContext db = new GaragemContext();
 
         // GET: api/Colaboradors
         public IQueryable<Colaborador> GetColaboradors()
         {
-            return db.Colaboradors;
+            return db.Colaboradors;//.Where(x => x.Ativo == true);
         }
 
         // GET: api/Colaboradors/5
         [ResponseType(typeof(Colaborador))]
-        public async Task<IHttpActionResult> GetColaborador(int id)
+        public IHttpActionResult GetColaborador(int id)
         {
-            Colaborador colaborador = await db.Colaboradors.FindAsync(id);
+            Colaborador colaborador = db.Colaboradors.Find(id);
             if (colaborador == null)
             {
                 return NotFound();
@@ -39,7 +41,7 @@ namespace PadawanProjectGarage.Controllers
 
         // PUT: api/Colaboradors/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutColaborador(int id, Colaborador colaborador)
+        public IHttpActionResult PutColaborador(int id, Colaborador colaborador)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +57,7 @@ namespace PadawanProjectGarage.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,31 +76,32 @@ namespace PadawanProjectGarage.Controllers
 
         // POST: api/Colaboradors
         [ResponseType(typeof(Colaborador))]
-        public async Task<IHttpActionResult> PostColaborador(Colaborador colaborador)
+        public IHttpActionResult PostColaborador(Colaborador colaborador)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                if (ModelState.Keys.First().ToString() != "colaborador.Id")
+                    return BadRequest(ModelState);
             }
 
             db.Colaboradors.Add(colaborador);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = colaborador.ColaboradorId }, colaborador);
         }
 
         // DELETE: api/Colaboradors/5
         [ResponseType(typeof(Colaborador))]
-        public async Task<IHttpActionResult> DeleteColaborador(int id)
+        public IHttpActionResult DeleteColaborador(int id)
         {
-            Colaborador colaborador = await db.Colaboradors.FindAsync(id);
+            Colaborador colaborador = db.Colaboradors.Find(id);
             if (colaborador == null)
             {
                 return NotFound();
             }
 
-            db.Colaboradors.Remove(colaborador);
-            await db.SaveChangesAsync();
+            colaborador.Ativo = false;
+            db.SaveChanges();
 
             return Ok(colaborador);
         }

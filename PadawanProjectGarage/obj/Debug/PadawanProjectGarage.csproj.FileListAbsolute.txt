@@ -118,6 +118,10 @@ C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\ko\System.Spatial.r
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\ru\System.Spatial.resources.dll
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\hbsis\Source\Repos\My-GitC\PadawanProjectGarage\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csprojAssemblyReference.cache
-C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.CreateAndInsert.resources
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\System.Web.Cors.dll
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\System.Web.Http.Cors.dll
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\bin\System.Web.Http.Cors.xml
 C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csproj.GenerateResource.cache
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.CreateAnInsert.resources
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.csprojAssemblyReference.cache
+C:\Users\hbsis\source\repos\My-GitC\PadawanProjectGarage\obj\Debug\PadawanProjectGarage.Migrations.Insert.resources

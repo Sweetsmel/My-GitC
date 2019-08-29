@@ -14,21 +14,28 @@ namespace PadawanProjectGarage.Models
 
         public int CodigoColaborador { get; set; }
 
+        [Required]
         [CustomValidFields(Enums.ValidFields.ValidaNome)]
         public string Nome { get; set; }
 
+        [Required]
         //[CustomValidFields(Enums.ValidFields.ValidaIdade)]
         public int Idade { get; set; }                     //aqui se for maior de 60 tem prioridade
 
+        [Required]
         [CustomValidFields(Enums.ValidFields.ValidaEmail)]
         public string Email { get; set; }
 
-        public bool PCD { get; set; } = true;
+        [Required]
+        public bool PCD { get; set; } = false;
 
-        public bool PeriodoNoturo { get; set; }            //obrigatorio
+        [Required]
+        public bool PeriodoNoturo { get; set; } = false;            //obrigatorio
 
-        public bool OfereceCarona { get; set; }            //se da carona tem prioridade
+        [Required]
+        public bool OfereceCarona { get; set; } = false;            //se da carona tem prioridade
 
-        public bool ResideFora { get; set; }               //se for de outra cidade tem prioridade
+        [Required]
+        public bool ResideFora { get; set; } = false;               //se for de outra cidade tem prioridade
     }
 }

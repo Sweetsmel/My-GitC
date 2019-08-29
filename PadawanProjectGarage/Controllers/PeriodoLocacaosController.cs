@@ -8,12 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PadawanProjectGarage.Models;
 using PadawanProjectGarage.Models.Sistema;
 
 namespace PadawanProjectGarage.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PeriodoLocacaosController : ApiController
     {
         private GaragemContext db = new GaragemContext();
@@ -26,9 +28,9 @@ namespace PadawanProjectGarage.Controllers
 
         // GET: api/PeriodoLocacaos/5
         [ResponseType(typeof(PeriodoLocacao))]
-        public async Task<IHttpActionResult> GetPeriodoLocacao(int id)
+        public IHttpActionResult GetPeriodoLocacao(int id)
         {
-            PeriodoLocacao periodoLocacao = await db.PeriodoLocacaos.FindAsync(id);
+            PeriodoLocacao periodoLocacao = db.PeriodoLocacaos.Find(id);
             if (periodoLocacao == null)
             {
                 return NotFound();
@@ -39,7 +41,7 @@ namespace PadawanProjectGarage.Controllers
 
         // PUT: api/PeriodoLocacaos/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPeriodoLocacao(int id, PeriodoLocacao periodoLocacao)
+        public IHttpActionResult PutPeriodoLocacao(int id, PeriodoLocacao periodoLocacao)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +57,7 @@ namespace PadawanProjectGarage.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,7 +76,7 @@ namespace PadawanProjectGarage.Controllers
 
         // POST: api/PeriodoLocacaos
         [ResponseType(typeof(PeriodoLocacao))]
-        public async Task<IHttpActionResult> PostPeriodoLocacao(PeriodoLocacao periodoLocacao)
+        public IHttpActionResult PostPeriodoLocacao(PeriodoLocacao periodoLocacao)
         {
             if (!ModelState.IsValid)
             {
@@ -82,23 +84,23 @@ namespace PadawanProjectGarage.Controllers
             }
 
             db.PeriodoLocacaos.Add(periodoLocacao);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = periodoLocacao.PeriodoID }, periodoLocacao);
         }
 
         // DELETE: api/PeriodoLocacaos/5
         [ResponseType(typeof(PeriodoLocacao))]
-        public async Task<IHttpActionResult> DeletePeriodoLocacao(int id)
+        public IHttpActionResult DeletePeriodoLocacao(int id)
         {
-            PeriodoLocacao periodoLocacao = await db.PeriodoLocacaos.FindAsync(id);
+            PeriodoLocacao periodoLocacao = db.PeriodoLocacaos.Find(id);
             if (periodoLocacao == null)
             {
                 return NotFound();
             }
 
             db.PeriodoLocacaos.Remove(periodoLocacao);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return Ok(periodoLocacao);
         }

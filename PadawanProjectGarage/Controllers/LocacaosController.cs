@@ -84,6 +84,36 @@ namespace PadawanProjectGarage.Controllers
                     return BadRequest(ModelState);
             }
 
+            var veiculo = db.TipoVeiculos.FirstOrDefault(x => x.TipoVeiculoID == locacao.Veiculofk);
+            var innerTipoVeiculo = from TipoVeiculoTemp in db.TipoVeiculos
+                                   join MarcaTemp in db.Marcas on TipoVeiculoTemp.TipoVeiculoID equals MarcaTemp.VeiculoFK
+                                   join ModeloTemp in db.Modelos on MarcaTemp.MarcaID equals ModeloTemp.MarcaFK
+                                   join VeiculoTemp in db.Locacaos on ModeloTemp.ModeloID equals VeiculoTemp.ModeloFK
+                                   where VeiculoTemp.LocacaoID == locacao.Veiculofk
+                                   select TipoVeiculoTemp;
+
+
+            var placaVerify = locacao.Placa;
+            var marcaVerify = locacao.marca;
+            var ConfirmarTermo = locacao.AceitaTermo;
+
+            if (ConfirmarTermo != true)
+            {
+                return BadRequest("Certifique de aceitar os termos ");
+            }
+
+
+            if (innerTipoVeiculo.First().Descricao == "Automovel" || innerTipoVeiculo.First().Descricao == "Moto")
+            {
+                if (marcaVerify == null || placaVerify == null)
+                {
+                    return BadRequest("A placa ou o modelo são campos obrigatórios para a locação de veículos do tipo CARRO e MOTO.");
+                }
+            };
+
+            Ok("Sua intenção de locação foi realizada com sucesso! Entraremos em contato para confirmar e seguir com as orientações de acesso");
+
+
             db.Locacaos.Add(locacao);
             db.SaveChanges();
 

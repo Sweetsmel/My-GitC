@@ -16,6 +16,7 @@ namespace PadawanProjectGarage.Models
 
         public int CodigoPeriodo { get; set; }          //Abril a Dezembro
 
+        //[Column(TypeName = "valor")]
         public decimal Valor { get; set; }              //valor R$ das vagas, diferente para carro e moto
 
         public int QuantidadeVagas { get; set; }        //por tipo de veiculo

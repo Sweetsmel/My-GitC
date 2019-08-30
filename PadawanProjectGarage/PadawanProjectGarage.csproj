@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr4.Runtime, Version=4.6.0.0, Culture=neutral, PublicKeyToken=09abb75b9ed49849, processorArchitecture=MSIL">
+      <HintPath>packages\Antlr4.Runtime.4.6.6\lib\net45\Antlr4.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -194,16 +197,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908291848018_CreateAnInsert.cs" />
-    <Compile Include="Migrations\201908291848018_CreateAnInsert.Designer.cs">
-      <DependentUpon>201908291848018_CreateAnInsert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908292002029_Insert.cs" />
-    <Compile Include="Migrations\201908292002029_Insert.Designer.cs">
-      <DependentUpon>201908292002029_Insert.cs</DependentUpon>
+    <Compile Include="Migrations\201908301720353_Insrt.cs" />
+    <Compile Include="Migrations\201908301720353_Insrt.Designer.cs">
+      <DependentUpon>201908301720353_Insrt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Sistema\BuscarMarcasTipo.cs" />
     <Compile Include="Models\Sistema\CustomValidFields.cs" />
     <Compile Include="Models\Sistema\DateTimeConverter.cs" />
     <Compile Include="Models\Sistema\GaragemContext.cs" />
@@ -303,11 +301,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908291848018_CreateAnInsert.resx">
-      <DependentUpon>201908291848018_CreateAnInsert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908292002029_Insert.resx">
-      <DependentUpon>201908292002029_Insert.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908301720353_Insrt.resx">
+      <DependentUpon>201908301720353_Insrt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

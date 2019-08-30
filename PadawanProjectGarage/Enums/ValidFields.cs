@@ -14,14 +14,15 @@ namespace PadawanProjectGarage.Enums
         ValidaNome,
         ValidaEmail,
         ValidaPlaca,
+        ValidaStatus,
+        //[EnumMember(Value = "Vigente")]
+        //ValidaVigente = 1,      //ativo
+        //[EnumMember(Value = "Em aprovação")]
+        //ValidaAprovacao = 2,    //inativo
+        //[EnumMember(Value = "Fila de espera")]
+        //ValidaEspera = 3,       //aguardo
 
-        [EnumMember(Value = "Vigente")]
-        ValidaVigente = 1,      //ativo
-        [EnumMember(Value = "Em aprovação")]
-        ValidaAprovacao = 2,    //inativo
-        [EnumMember(Value = "Fila de espera")]
-        ValidaEspera = 4,       //aguardo
-
+        //ValidaPrioridade
         //ValidaIdade,
 
     }

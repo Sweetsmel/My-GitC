@@ -19,12 +19,12 @@ namespace PadawanProjectGarage.Models
         public string Nome { get; set; }
 
         [Required]
-        //[CustomValidFields(Enums.ValidFields.ValidaIdade)]
-        public int Idade { get; set; }                     //aqui se for maior de 60 tem prioridade
-
-        [Required]
         [CustomValidFields(Enums.ValidFields.ValidaEmail)]
         public string Email { get; set; }
+
+        [Required]
+        //[CustomValidFields(Enums.ValidFields.ValidaIdade)]
+        public bool Idoso { get; set; } = false;
 
         [Required]
         public bool PCD { get; set; } = false;

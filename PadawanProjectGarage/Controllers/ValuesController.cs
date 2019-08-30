@@ -11,16 +11,7 @@ namespace PadawanProjectGarage.Controllers
 {
     public class ValuesController : ApiController
     {
-
-
         private GaragemContext db = new GaragemContext();
-
-        [Route("Api/Values/{TipoVeiculo}/contendo")]
-        [HttpGet]
-        public IQueryable<Marca> ObtemContendo(int filter)
-        {
-            return db.Marcas.Where(x => x.tipoVeiculo.TipoVeiculoID == filter);
-        }
                
         // GET api/values
         public IEnumerable<string> Get()

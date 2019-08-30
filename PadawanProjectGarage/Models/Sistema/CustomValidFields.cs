@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 
 namespace PadawanProjectGarage.Models.Sistema
 {
@@ -30,10 +31,11 @@ namespace PadawanProjectGarage.Models.Sistema
                     case ValidFields.ValidaNome:      return ValidarNome(value, validationContext.DisplayName);
                     case ValidFields.ValidaEmail:     return ValidarEmail(value, validationContext.DisplayName);
                     case ValidFields.ValidaPlaca:     return ValidarPLaca(value, validationContext.DisplayName);
-                    //case ValidFields.ValidaVigente:   return ValidarVigente(value, validationContext.DisplayName);
+                    case ValidFields.ValidaStatus:      return ValidarStatus(validationContext);
+                    //case ValidFields.ValidaVigente:   return ValidarVigente(validationContext);
                     //case ValidFields.ValidaAprovacao: return ValidarAprovacao(value, validationContext.DisplayName);
-                    //case ValidFields.ValidaEspera:    return ValidarEspera(value, validationContext.DisplayName);
-                    //case ValidFields.ValidaIdade:
+                    //case ValidFields.ValidaEspera:    return ValidarEspera(validationContext);
+                    //case ValidFields.ValidaPrioridade: return ValidarPrioridade(value, validationContext.DisplayName)
                     default:
                         break;
                 }
@@ -75,47 +77,58 @@ namespace PadawanProjectGarage.Models.Sistema
             }
             return new ValidationResult($"O campo {displayField} não está no formato aceitável!"); 
         }
-
-        /*private ValidationResult ValidarData(object data, string displayField)
+        /*private ValidationResult ValidarPrioridade(ValidationContext validationContext)
         {
-            var dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy HH:mm" };
-                GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(dateTimeConverter);
-
-            if (dateTimeConverter)
-                return ValidationResult.Success;
-
-            return new ValidationResult($"O campo {displayField} não está no formato aceitável!");
-
-            
+            Colaborador colaborador = (Colaborador)validationContext.ObjectInstance;
+            if (colaborador.Idoso == true)
+                return ValidationContext.Success;
         }*/
-
 
         /*private ValidationResult ValidarIdade(object idade, string displayField) //DateTime DataNascimento)
         {
-            int Idade = DateTime.Today.Year - Colaborador.DataNascimento.Year;
-            if (Colaborador.DataNascimento.Date > DateTime.Today.AddYears(-Idade))
+            DateTime dt;
+            DateTime dtNascimentoMax = DateTime.Now.AddYears(-60);
+            DateTime dtMax = DateTime.Parse("dd/MM/yyyy");
+
+            int Idade = DateTime.Today.Year - UsuarioTipo.DataNascimento.Year;
+            if (UsuarioTipo.DataNascimento.Date > DateTime.Today.AddYears(-Idade))
             {
                 Idade--;
             }
             return (Idade >= 60) ? true : false;
         }*/
-
-        /*private ValidationResult ValidarVigente(bool status, ValidationContext validationContext)
+        private ValidationResult ValidarStatus(ValidationContext validationContext)
         {
             Locacao locacao = (Locacao)validationContext.ObjectInstance;
 
-            if (locacao.termoDeLocacao) locacao.Status = "Esperando aprovação";
-
-            if (!locacao.AceitaTermo) locacao.Status = "Negado";
-
-            return ValidationResult.Success;
-        }*/
-
-        /*private ValidationResult ValidarVeiculos(bool value, ValidationContext validationContext)
+            if (locacao.AceitaTermo)
+            {
+                locacao.Status = (int)ValidFields.ValidaStatus;
+                return ValidationResult.Success;
+            }
+            return new ValidationResult("Para realizar a locação, você deve aceitar os termos de uso");    //O campo {validationContext.DisplayName} é inválido
+        }
+        /*private ValidationResult ValidarVigente(ValidationContext validationContext)
         {
-            TipoVeiculo tipoVeiculo = (TipoVeiculo)validationContext.ObjectInstance;
+            Locacao locacao = (Locacao)validationContext.ObjectInstance;
 
-            if(tipoVeiculo.CodigoTipo) tipoVeiculo.Descricao = ""
+            if (locacao.AceitaTermo)
+            {
+                locacao.Status = (int)ValidFields.ValidaEspera;
+                return ValidationResult.Success;
+            }
+            return new ValidationResult("Sua intenção de locação foi realizada com sucesso! Entraremos em contato para confirmar e seguir com as orientações de acesso.");
+        }*/
+        /*private ValidationResult ValidarAprovacao(ValidationContext validationContext)
+        {
+            Locacao locacao = (Locacao)validationContext.ObjectInstance;
+
+            if (locacao.AceitaTermo)
+            {
+                locacao.Status = (int)ValidFields.ValidaEspera;
+                return ValidationResult.Success;
+            }
+            return new ValidationResult($"Sua locação está em aprovação.");
         }*/
     }
 }

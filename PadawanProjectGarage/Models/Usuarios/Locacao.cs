@@ -19,7 +19,9 @@ namespace PadawanProjectGarage.Models
         [CustomValidFields(Enums.ValidFields.ValidaPlaca)]
         public string Placa { get; set; }
 
-        public bool Status { get; set; }
+        public int Status { get; set; }
+
+        public bool AceitaTermo { get; set; }
 
         [ForeignKey("Veiculofk")]
         public TipoVeiculo tipoVeiculo { get; set; }

@@ -8,15 +8,24 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using PadawanProjectGarage.Models;
 using PadawanProjectGarage.Models.Sistema;
 
 namespace PadawanProjectGarage.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MarcasController : ApiController
     {
         private GaragemContext db = new GaragemContext();
+
+        [Route("Api/Marcas/{tipoVeiculo}/contendo")]
+        [HttpGet]
+        public IQueryable<Marca> Obtemcontendo(int tipoVeiculo)
+        {
+            return db.Marcas.Where(x => x.tipoVeiculo.TipoVeiculoID == tipoVeiculo);            
+        }
 
         // GET: api/Marcas
         public IQueryable<Marca> GetMarcas()
